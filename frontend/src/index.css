@@ -1,0 +1,183 @@
+/* Aishka - Brand Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/*
+ * Aishka Serif — Cormorant letterforms with DM Sans numerals (0–9, ₹, %, +, ×).
+ * Applied via --font-serif and inline Cormorant overrides.
+ */
+@font-face {
+  font-family: 'Aishka Serif';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slCNuHLi8BDZfkMvYxCsYk4bo2a-n1OsCk6tXbMw.woff2') format('woff2');
+  unicode-range: U+0000-002F, U+003A-10FFFF;
+}
+
+@font-face {
+  font-family: 'Aishka Serif';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3ZmX5slCNuHLi8bdZtkMtOx-A.woff2') format('woff2');
+  unicode-range: U+0000-002F, U+003A-10FFFF;
+}
+
+@font-face {
+  font-family: 'Aishka Serif';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZ2IHSeH.woff2') format('woff2');
+  unicode-range: U+0030-0039, U+20B9, U+0025, U+002B, U+00D7;
+}
+
+@font-face {
+  font-family: 'Aishka Serif';
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/dmsans/v15/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoEwAop1h.woff2') format('woff2');
+  unicode-range: U+0030-0039, U+20B9, U+0025, U+002B, U+00D7;
+}
+
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Aishka Serif", "Cormorant Garamond", serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-numeric: "DM Sans", system-ui, sans-serif;
+  --color-brand-cream: #ffffff;
+  --color-brand-wine: #6B1E2E;
+  --color-brand-gold: #C8A24A;
+  --color-brand-gold-light: #E8C766;
+  --animate-kenburns: kenburns 12s ease-out forwards;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes kenburns {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.12); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: var(--color-brand-wine);
+  font-family: var(--font-sans);
+  font-variant-numeric: lining-nums;
+}
+
+/* Serif display: sans numerals via Aishka Serif composite */
+.font-serif {
+  font-variant-numeric: lining-nums;
+}
+
+/* Inline Cormorant styles → composite (sans digits in mixed text) */
+[style*="Cormorant Garamond"] {
+  font-family: "Aishka Serif", "Cormorant Garamond", serif !important;
+  font-variant-numeric: lining-nums;
+}
+
+/* Explicit numeric / price styling */
+.font-numeric,
+.tabular-nums {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="number"],
+input[type="tel"],
+input[type="date"] {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Utility to hide scrollbar but maintain functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Toast Animations */
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Prefers Reduced Motion Reset - Accessibility override for luxury user experience */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* Gemstone Chamfered Rectangle Clip-Path */
+.clip-gemstone {
+  clip-path: polygon(0 4%, 4% 0, 96% 0, 100% 4%, 100% 96%, 96% 100%, 4% 100%, 0 96%);
+}
+
+/* Solid white background for budget tiles */
+.budget-tile {
+  background-color: #ffffff !important;
+}
+
+/* Shimmer Sweep Animation */
+@keyframes shimmer-sweep {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.shimmer-sweep {
+  position: absolute;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+}
+
